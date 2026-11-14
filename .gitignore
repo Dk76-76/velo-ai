@@ -1,0 +1,7 @@
+.venv/
+.env
+backend-modal/.env
+__pycache__/
+backend-modal/__pycache__/
+backend-modal/storage_data/
+backend-modal/test_keys.py

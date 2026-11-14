@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velo AI — Intelligent Workspace</title>
+    <link rel="stylesheet" href="style.css?v=5">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-badge"><i class="fa-solid fa-bolt"></i></div>
+                <div>
+                    <h2>Velo AI</h2>
+                    <span class="version-tag">v2.5 Pro</span>
+                </div>
+            </div>
+
+            <button type="button" id="newSessionBtn" class="new-chat-btn">
+                <i class="fa-solid fa-plus"></i> New Workspace
+            </button>
+
+            <div class="session-box">
+                <label><i class="fa-solid fa-fingerprint"></i> Active Session ID</label>
+                <input type="text" id="sessionIdInput" value="velo-user-001" readonly>
+            </div>
+
+            <!-- AUTO FILE UPLOAD DROPZONE -->
+            <div class="upload-section">
+                <label><i class="fa-solid fa-layer-group"></i> Knowledge Base (Auto-Index)</label>
+                <div class="drop-zone" id="dropZone">
+                    <div class="drop-icon-wrap">
+                        <i class="fa-solid fa-cloud-arrow-up" id="uploadIcon"></i>
+                    </div>
+                    <p id="uploadTitle">Click or Drop Document</p>
+                    <span id="fileNameDisplay">PDF, DOCX, TXT, CSV (Auto-uploads)</span>
+                    <input type="file" id="fileInput" accept=".pdf,.docx,.txt,.csv,.md">
+                </div>
+                <div id="activeDocBadge" class="active-doc-badge hidden">
+                    <div class="doc-badge-info">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span id="activeDocName">No file</span>
+                    </div>
+                    <button type="button" id="removeDocBtn" title="Remove Document"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+
+            <!-- QUICK STARTER PROMPTS -->
+            <div class="quick-actions-section">
+                <label><i class="fa-solid fa-wand-magic-sparkles"></i> One-Click Actions</label>
+                <button type="button" class="quick-chip" data-prompt="Summarize my uploaded document with key bullet points.">
+                    <i class="fa-solid fa-file-lines"></i> Summarize Document
+                </button>
+                <button type="button" class="quick-chip" data-prompt="Extract key skills, projects, and contact info in a clean table.">
+                    <i class="fa-solid fa-table"></i> Extract Key Info Table
+                </button>
+                <button type="button" class="quick-chip" data-prompt="Give me top official documentation and GitHub links for FastAPI & LangChain.">
+                    <i class="fa-solid fa-globe"></i> Find Official Tech Links
+                </button>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="status-badge">
+                    <span class="dot"></span>
+                    <span id="jsStatusText">Engine Online</span>
+                </div>
+                <p>Smart Router • RAG • Live Web</p>
+            </div>
+        </aside>
+
+        <!-- MAIN CHAT AREA -->
+        <main class="chat-main">
+            <header class="chat-header">
+                <div class="header-title">
+                    <h3>Velo AI Assistant</h3>
+                    <span class="sub-title">Context-Aware Document RAG & Live Web Search</span>
+                </div>
+                <div class="header-actions">
+                    <button type="button" id="exportChatBtn" title="Download Chat as Markdown">
+                        <i class="fa-solid fa-download"></i> Export
+                    </button>
+                    <button type="button" id="clearChatBtn" title="Clear Conversation">
+                        <i class="fa-regular fa-trash-can"></i> Clear
+                    </button>
+                </div>
+            </header>
+
+            <!-- CHAT MESSAGES CONTAINER -->
+            <div class="chat-messages" id="chatMessages">
+                <div class="message ai-message">
+                    <div class="avatar"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="msg-body">
+                        <div class="content">
+                            <p>Hello! I am <strong>Velo AI</strong>. Drop a PDF/DOCX on the left (or click <i class="fa-solid fa-paperclip"></i> below) for instant auto-indexing. I only read your document or search the web when your question actually requires it!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODERN FLOATING INPUT PILL -->
+            <div class="chat-input-area">
+                <div class="input-pill">
+                    <button type="button" id="quickAttachBtn" class="tool-icon-btn" title="Attach PDF, DOCX, TXT">
+                        <i class="fa-solid fa-paperclip"></i>
+                    </button>
+                    <button type="button" id="webSearchToggle" class="web-toggle-btn" title="Force Live Web Search">
+                        <i class="fa-solid fa-globe"></i> <span>Web</span>
+                    </button>
+                    <textarea id="userInput" placeholder="Ask anything, query your PDF, or toggle Web Search..." rows="1"></textarea>
+                    <button type="button" id="voiceBtn" class="tool-icon-btn" title="Voice Input">
+                        <i class="fa-solid fa-microphone"></i>
+                    </button>
+                    <button type="button" id="sendBtn" class="send-btn" title="Send Message">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                </div>
+                <div class="disclaimer">Velo AI uses Smart Intent Routing — Document & Web tools activate automatically when relevant.</div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js?v=5"></script>
+</body>
+</html>
